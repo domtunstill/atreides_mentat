@@ -2,7 +2,10 @@ import React from "react";
 import { special_card } from "ts/treachery_card";
 import { useSelector } from "react-redux";
 import { root_state_t } from "ts/state/reducers";
-import { treachery_card_colours, treachery_card_icons } from "ts/components/TreacheryCard";
+import {
+  treachery_card_colours,
+  treachery_card_icons,
+} from "ts/components/TreacheryCard";
 
 const UnknownCard: React.FC<{
   deck_index: number;
@@ -22,9 +25,9 @@ const UnknownCard: React.FC<{
 
   const colours = treachery_card_colours.Unknown;
   interface CardCounter {
-   [key: string]: Array<any>;
-  };
-  let cardCounter:CardCounter = {};
+    [key: string]: Array<any>;
+  }
+  let cardCounter: CardCounter = {};
 
   for (let i = 0; i < deck.cards.length; i++) {
     const card = deck.cards[i];
@@ -67,7 +70,7 @@ const UnknownCard: React.FC<{
 
   function countSpecials(key: special_card["type"]) {
     let count = 0;
-    cardCounter["Special"].forEach(s => {
+    cardCounter["Special"].forEach((s) => {
       if (s.type === key) {
         count++;
       }
@@ -82,7 +85,9 @@ const UnknownCard: React.FC<{
         style={{ padding: "0 20px" }}
       >
         <figure className="image is-32x32 level-item">{treachery_card_icons.Unknown(32)}</figure>
-        <div className={"card-header-title has-text-" + colours.text}>Unknown</div>
+        <div className={"card-header-title has-text-" + colours.text}>
+          Unknown
+        </div>
         {onDelete ? <button className="delete" onClick={onDelete}></button> : null}
       </header>
       <div className="card-content is-size-7 content">
@@ -111,14 +116,20 @@ const UnknownCard: React.FC<{
             </div>
             {!show_special_details && (
               <div className="columns is-multiline is-mobile">
-                {Object.keys(cardCounter).map(key => {
-                  return <Tag label={key} val={cardCounter[key].length} colour_key={cardCounter[key][0].kind} />;
+                {Object.keys(cardCounter).map((key) => {
+                  return (
+                    <Tag
+                      label={key}
+                      val={cardCounter[key].length}
+                      colour_key={cardCounter[key][0].kind}
+                    />
+                  );
                 })}
               </div>
             )}
             {show_special_details && (
               <div className="columns is-multiline">
-                {cardCounter["Special"].map(card => {
+                {cardCounter["Special"].map((card) => {
                   return <Tag label={card.type} val={countSpecials(card.type)} />;
                 })}
               </div>

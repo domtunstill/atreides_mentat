@@ -75,45 +75,6 @@ const GameOverview: React.FC = () => {
   }
   return (
     <>
-      <div className="container">
-        <nav className="navbar">
-          <div className="navbar-end">
-            <div className="navbar-item">
-              <div className="buttons">
-                <button
-                  className="button is-info"
-                  onClick={() => dispatch(undo_action())}
-                  disabled={!can_undo}
-                >
-                  <span className="icon">
-                    <i className="fas fa-undo"></i>
-                  </span>
-                  <span>Undo</span>
-                </button>
-                {deck_tracking && (
-                  <button
-                    className="button is-warning"
-                    onClick={() => dispatch(show_disable_tracking_modal())}
-                  >
-                    <span>Disable deck tracking</span>
-                  </button>
-                )}
-                <button
-                  className="button is-danger"
-                  onClick={() => {
-                    dispatch(show_reset_game_modal());
-                  }}
-                >
-                  <span className="icon">
-                    <i className="fas fa-power-off"></i>
-                  </span>
-                  <span>Reset game</span>
-                </button>
-              </div>
-            </div>
-          </div>
-        </nav>
-      </div>
       <section className="section">
         <div className="container">
           <h2 className="title">Factions</h2>
@@ -150,6 +111,46 @@ const GameOverview: React.FC = () => {
           </section>
         </>
       )}
+           <hr />
+      <div style={{right:0, bottom:0, zIndex: 100, position:"fixed", width:"100vw"}}>
+        <nav className="navbar">
+          <div className="navbar-end">
+            <div className="navbar-item">
+              <div className="buttons">
+              <button
+                  className="button is-info"
+                  onClick={() => dispatch(undo_action())}
+                  disabled={!can_undo}
+                >
+                  <span className="icon">
+                    <i className="fas fa-undo"></i>
+                  </span>
+                  <span>Undo</span>
+                </button>
+                {deck_tracking && (
+                  <button
+                    className="button is-warning"
+                    onClick={() => dispatch(show_disable_tracking_modal())}
+                  >
+                    <span>Disable discard</span>
+                  </button>
+                )}
+                <button
+                  className="button is-danger"
+                  onClick={() => {
+                    dispatch(show_reset_game_modal());
+                  }}
+                >
+                  <span className="icon">
+                    <i className="fas fa-power-off"></i>
+                  </span>
+                  <span>Reset</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
       {modal}
     </>
   );

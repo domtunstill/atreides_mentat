@@ -8,6 +8,7 @@ import {
   show_discard_unknown_modal,
   show_assign_unknown_modal,
   house_remove_unknown,
+  house_assign_unknown,
 } from "ts/state/actions";
 import TreacheryCard, {
   treachery_card_colours,
@@ -101,8 +102,12 @@ const ViewCards: React.FC<house_state_t> = house => {
                   const colour = treachery_card_colours["Unknown"].bg;
                   return (
                     <span className={"tag is-medium is-" + colour} key={"Unknown" + index.toString()}>
+                      <div style={{  cursor: 'pointer',    display: 'flex',
+    flexDirection: 'row',}} onClick={() => dispatch(show_assign_unknown_modal(house.name))}>
+
                       <figure className="image is-24x24">{treachery_card_icons.Unknown(24)}</figure>
                       Unknown
+                      </div>
                       {deleteButton}
                     </span>
                   );
